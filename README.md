@@ -1,4 +1,4 @@
-## 1 两数之和
+## [1. 两数之和](https://leetcode.cn/problems/two-sum/)
 
 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。
 
@@ -19,7 +19,7 @@ class Solution:
 
 Python中哈希表用字典，可用enumerate()优化循环代码
 
-## 2 两数相加
+## [2. 两数相加](https://leetcode.cn/problems/add-two-numbers/)
 
 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。
 
@@ -55,7 +55,7 @@ class Solution:
 
 使用头节点来辅助链表操作，注意循环条件和进位carry
 
-## 3 无重复字符的最长子串
+## [3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
 
 给定一个字符串 `s` ，请你找出其中不含有重复字符的 **最长子串** 的长度。
 
@@ -78,7 +78,7 @@ class Solution:
 
 滑动窗口，用左右指针和哈希表，注意更新哈希表和左指针
 
-## 5 最长回文子串
+## [5. 最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring/)
 
 给你一个字符串 `s`，找到 `s` 中最长的回文子串。
 
@@ -120,7 +120,7 @@ class Solution:
 
 动态规划，注意初始情况和递推，循环条件是子串的长度，判断条件是字符是否相等
 
-## 11 盛最多水的容器
+## [11. 盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/)
 
 给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。
 
@@ -148,7 +148,7 @@ class Solution:
 
 双指针，盛水存在短板效应，注意细节面积计算公式
 
-## 15 三数之和
+## [15. 三数之和](https://leetcode.cn/problems/3sum/)
 
 给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请
 
@@ -185,7 +185,11 @@ class Solution:
 
 排序+双指针，通过双指针优化第三重循环，通过判断来去掉重复解
 
-## 17 电话号码的字母组合
+## [17. 电话号码的字母组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/)
+
+给定一个仅包含数字 `2-9` 的字符串，返回所有它能表示的字母组合。答案可以按 **任意顺序** 返回。
+
+给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
 
 ```python
 class Solution:
@@ -207,20 +211,20 @@ class Solution:
         def backtrack(index):
             # 结束状态
             if index == n:
-                conbinations.append(''.join(conbination))
+                combinations.append(''.join(combination))
             else:
                 # 遍历所有可能的下一状态
                 for letter in mappings[digits[index]]:
-                    conbination.append(letter)
+                    combination.append(letter)
                     # 对新状态进行回溯
                     backtrack(index+1)
                     # 状态重置，返回原状态
-                    conbination.pop()
+                    combination.pop()
         
-        conbination = []
-        conbinations = []
+        combination = []
+        combinations = []
         backtrack(0)
-        return conbinations
+        return combinations
 
 
 class Solution:
@@ -242,14 +246,14 @@ class Solution:
         def backtrack(index, seq):
             # 结束状态
             if index == n:
-                conbinations.append(seq)
+                combinations.append(seq)
             else:
                 for letter in mappings[digits[index]]:
                     backtrack(index+1, seq + letter)
         
-        conbinations = []
+        combinations = []
         backtrack(0, '')
-        return conbinations
+        return combinations
 ```
 
 > 当题目中出现 “所有组合” 等类似字眼时，我们第一感觉就要想到用回溯。
@@ -258,7 +262,7 @@ class Solution:
 
 写了两种实现方法，前一种使用全局变量，在回溯时需要pop，第二种使用`+` 生成了新的字符串（Java 和 Python 里），每次往下面传递的时候，都是新字符串，因此在搜索的时候不用回溯。
 
-## 19 删除链表的倒数第N个结点
+## [19. 删除链表的倒数第 N 个结点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
 
 ```python
 # Definition for singly-linked list.
@@ -714,7 +718,7 @@ class Solution:
 
 由于互为字母异位词的两个字符串包含的字母相同，因此对两个字符串分别进行排序之后得到的字符串一定是相同的，故可以将排序之后的字符串作为哈希表的键。
 
-## 53 最大子数组和
+## [53. 最大子数组和](https://leetcode.cn/problems/maximum-subarray/)
 
 给你一个整数数组 `nums` ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
 
@@ -742,7 +746,7 @@ class Solution:
 
 可是 dp[i - 1] 有可能是负数，于是分类讨论：如果 dp[i - 1] > 0，那么可以把 nums[i] 直接接在 dp[i - 1] 表示的那个数组的后面，得到和更大的连续子数组；如果 dp[i - 1] <= 0，那么 nums[i] 加上前面的数 dp[i - 1] 以后值不会变大。于是 dp[i] 「另起炉灶」，此时单独的一个 nums[i] 的值，就是 dp[i]。
 
-## 55 跳跃游戏
+## [55. 跳跃游戏](https://leetcode.cn/problems/jump-game/)
 
 给定一个非负整数数组 `nums` ，你最初位于数组的 **第一个下标** 。
 
@@ -804,7 +808,7 @@ class Solution:
 > 我们用数组 merged 存储最终的答案。首先，我们将列表中的区间按照左端点升序排序。然后我们将第一个区间加入 merged 数组中，并按顺序依次考虑之后的每个区间：如果当前区间的左端点在数组 merged 中最后一个区间的右端点之后，那么它们不会重合，我们可以直接将这个区间加入数组 merged 的末尾；否则，它们重合，我们需要用当前区间的右端点更新数组 merged 中最后一个区间的右端点，将其置为二者的较大值。
 >
 
-## 62 不同路径
+## [62. 不同路径](https://leetcode.cn/problems/unique-paths/)
 
 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。
 
@@ -829,9 +833,9 @@ class Solution:
 
 动态规划。每个位置的路径 = 该位置左边的路径 + 该位置上边的路径
 
-## 64 最小路径和
+## [64. 最小路径和](https://leetcode.cn/problems/minimum-path-sum/)
 
-给定一个包含非负整数的 `*m* x *n*` 网格 `grid` ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+给定一个包含非负整数的 `m x n` 网格 `grid` ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
 
 **说明：**每次只能向下或者向右移动一步。
 
@@ -856,7 +860,7 @@ class Solution:
 
 动态规划
 
-## 70 爬楼梯
+## [70. 爬楼梯](https://leetcode.cn/problems/climbing-stairs/)
 
 假设你正在爬楼梯。需要 `n` 阶你才能到达楼顶。
 
@@ -1106,7 +1110,7 @@ class Solution:
 > 方法二中，之所以要使用临时变量，是因为如果直接合并到数组 nums1 中，nums1 中的元素可能会在取出之前被覆盖。那么如何直接避免覆盖 nums1中的元素呢？观察可知，nums1的后半部分是空的，可以直接覆盖而不会影响结果。因此可以指针设置为从后向前遍历，每次取两者之中的较大者放进 nums1的最后面。
 >
 
-## 94 二叉树的中序遍历
+## [94. 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
 
 给定一个二叉树的根节点 `root` ，返回 *它的 **中序** 遍历* 。
 
@@ -1282,7 +1286,7 @@ class Solution:
 >
 > 那么怎么知道左子树与右子树对不对称呢？在这我直接叫为左树和右树 答案：如果左树的左孩子与右树的右孩子对称，左树的右孩子与右树的左孩子对称，那么这个左树和右树就对称
 
-## 102 二叉树的层序遍历
+## [102. 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)
 
 给你二叉树的根节点 `root` ，返回其节点值的 **层序遍历** 。 （即逐层地，从左到右访问所有节点）。
 
@@ -1336,7 +1340,7 @@ def bfs(root):
 >
 > 需要稍微修改一下代码，在每一层遍历开始前，先记录队列中的结点数量 *n*（也就是这一层的结点数量），然后一口气处理完这一层的 *n* 个结点（观察这个算法，可以归纳出一个循环不变式：第 *i* 次迭代前，队列中的所有元素就是第 *i* 层的所有元素，并且按照从左向右的顺序排列）
 
-## 104 二叉树的最大深度
+## [104. 二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)
 
 给定一个二叉树 `root` ，返回其最大深度。
 
@@ -1552,7 +1556,7 @@ class Solution:
 > 将左子树插入到右子树的地方；将原来的右子树接到左子树的最右边节点；考虑新的右子树的根节点，一直重复上边的过程，直到新的右子树为 null
 >
 
-## 121 买卖股票的最佳时机
+## [121. 买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/)
 
 给定一个数组 `prices` ，它的第 `i` 个元素 `prices[i]` 表示一支给定股票第 `i` 天的价格。
 
@@ -1713,7 +1717,7 @@ class Solution:
 >
 > 数组中的全部元素的异或运算结果即为数组中只出现一次的数字
 
-## 139 单词拆分
+## [139. 单词拆分](https://leetcode.cn/problems/word-break/)
 
 给你一个字符串 `s` 和一个字符串列表 `wordDict` 作为字典。请你判断是否可以利用字典中出现的单词拼接出 `s` 。
 
@@ -1743,7 +1747,7 @@ class Solution:
 >
 > *dp*[0]=true 表示空串且合法
 
-## 141 环形链表
+## [141. 环形链表](https://leetcode.cn/problems/linked-list-cycle/)
 
 给你一个链表的头节点 `head` ，判断链表中是否有环。
 
@@ -2025,7 +2029,7 @@ class Solution:
 
 > 双指针倒序遍历：倒序遍历字符串 *s* ，记录单词左右索引边界 *i* , *j* ；每确定一个单词的边界，则将其添加至单词列表 *res* ；最终，将单词列表拼接为字符串，并返回即可
 
-## 152 乘积最大子数组
+## [152. 乘积最大子数组](https://leetcode.cn/problems/maximum-product-subarray/)
 
 给你一个整数数组 `nums` ，请你找出数组中乘积最大的非空连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。
 
@@ -2160,7 +2164,7 @@ class Solution:
         return majority_element(0, len(nums)-1)
 ```
 
-## 198 打家劫舍
+## [198. 打家劫舍](https://leetcode.cn/problems/house-robber/)
 
 你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，**如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警**。
 
@@ -2199,7 +2203,7 @@ class Solution:
 >
 > *dp*[*i*]=max(*dp*[*i*−2]+*nums*[*i*],*dp*[*i*−1])
 
-## 200 岛屿数量
+## [200. 岛屿数量](https://leetcode.cn/problems/number-of-islands/)
 
 给你一个由 `'1'`（陆地）和 `'0'`（水）组成的的二维网格，请你计算网格中岛屿的数量。
 
@@ -2237,7 +2241,7 @@ class Solution:
 
 dfs
 
-## 206 反转链表
+## [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
 
 给你单链表的头节点 `head` ，请你反转链表，并返回反转后的链表。
 
@@ -2280,7 +2284,7 @@ class Solution:
 > 在遍历链表时，将当前节点的 next 指针改为指向前一个节点。由于节点没有引用其前一个节点，因此必须事先存储其前一个节点。在更改引用之前，还需要存储后一个节点。最后返回新的头引用。
 >
 
-## 207 课程表
+## [207. 课程表](https://leetcode.cn/problems/course-schedule/)
 
 你这个学期必须选修 `numCourses` 门课程，记为 `0` 到 `numCourses - 1` 。
 
@@ -2295,13 +2299,13 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         # 入度数组，邻接表
         indegree = [0] * numCourses
-        map = {} # 课号: 依赖这门课的后续课列表
+        mappings = {} # 课号: 依赖这门课的后续课列表
         for i in prerequisites:
             indegree[i[0]] += 1
-            if i[1] in map.keys():
-                map[i[1]].append(i[0])
+            if i[1] in mappings.keys():
+                mappings[i[1]].append(i[0])
             else:
-                map.update({i[1]: [i[0]]})
+                mappings.update({i[1]: [i[0]]})
         
         queue = []
         for i in range(numCourses):
@@ -2313,8 +2317,8 @@ class Solution:
             course = queue.pop(0)
             count += 1
             # 如果有依赖此课程的后续课程则更新入度
-            if course in map.keys():
-                for i in map[course]:
+            if course in mappings.keys():
+                for i in mappings[course]:
                     indegree[i] -= 1
                     # 后续课程除去当前课程无其他依赖课程则丢入队列
                     if indegree[i] == 0:
@@ -2370,7 +2374,7 @@ class Solution:
 
 拓扑排序，bfs，相比于207多了一步用res记录节点
 
-## 213 打家劫舍 II
+## [213. 打家劫舍 II](https://leetcode.cn/problems/house-robber-ii/)
 
 你是一个专业的小偷，计划偷窃沿街的房屋，每间房内都藏有一定的现金。这个地方所有的房屋都 **围成一圈** ，这意味着第一个房屋和最后一个房屋是紧挨着的。同时，相邻的房屋装有相互连通的防盗系统，**如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警** 。
 
@@ -3707,43 +3711,6 @@ class Solution:
 ```
 
 快速排序
-
-## 1143 最长公共子序列
-
-给定两个字符串 `text1` 和 `text2`，返回这两个字符串的最长 **公共子序列** 的长度。如果不存在 **公共子序列** ，返回 `0` 。
-
-一个字符串的 **子序列** 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。
-
-- 例如，`"ace"` 是 `"abcde"` 的子序列，但 `"aec"` 不是 `"abcde"` 的子序列。
-
-两个字符串的 **公共子序列** 是这两个字符串所共同拥有的子序列。
-
-```python
-class Solution:
-    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
-        m, n = len(text1), len(text2)
-        dp = [[0] * (n+1) for _ in range(m+1)]
-        
-        for i in range(1, m+1):
-            for j in range(1, n+1):
-                if text1[i-1] == text2[j-1]:
-                    dp[i][j] = dp[i-1][j-1] + 1
-                else:
-                    dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-        return dp[m][n]
-```
-
-> 假设字符串 text1 和 text2 的长度分别为 m 和 n，创建 m+1 行 n+1 列的二维数组 dp，其中 dp\[i][j] 表示 text1[0:i] 和 text2[0:j] 的最长公共子序列的长度。上述表示中，text1[0:i] 表示 text1 的长度为 i 的前缀，text2[0:j] 表示 text2 的长度为 j 的前缀。
->
-> 当 i=0 时，text1[0:i] 为空，空字符串和任何字符串的最长公共子序列的长度都是 0，因此对任意 0≤j≤n，有 dp\[0][j]=0；当 j=0 时，text2[0:j] 为空，同理可得，对任意 0≤i≤m，有 dp\[i][0]=0。
->
-> 当 i>0 且 j>0 时，考虑 dp\[i][j] 的计算：
->
-> 当 text1[i−1]=text2[j−1] 时，将这两个相同的字符称为公共字符，考虑 text1[0:i−1] 和 text2[0:j−1] 的最长公共子序列，再增加一个字符（即公共字符）即可得到 text1[0:i] 和 text2[0:j] 的最长公共子序列，因此 dp\[i][j]=dp\[i−1][j−1]+1。
->
-> 当 text1[i−1]≠text2[j−1] 时，考虑以下两项：text1[0:i−1] 和 text2[0:j] 的最长公共子序列；text1[0:i] 和 text2[0:j−1] 的最长公共子序列。要得到 text1[0:i] 和 text2[0:j] 的最长公共子序列，应取两项中的长度较大的一项，因此 dp\[i][j]=max⁡(dp\[i−1][j],dp\[i][j−1])。
->
-> 最终计算得到 dp\[m][n] 即为 text1 和 text2 的最长公共子序列的长度。
 
 ## 01背包
 
